@@ -1,5 +1,6 @@
 # PokemonSMS-Main
 The Main Game for PokemonSMS
+	
 	Copyright (C) 2018 Connor Horman
 
     This program is free software: you can redistribute it and/or modify
