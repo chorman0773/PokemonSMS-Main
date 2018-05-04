@@ -44,7 +44,7 @@ public final class Registries extends TwoArgFunction {
 	public static void loadAbilities() {
 		LuaValue v = LuaContext.require("Abilities");
 		LuaTable abilities = v.checktable();
-
+		
 		for(int i = 1;i<=abilities.length();i++) {
 			Ability a = new Ability(abilities.get(i).checktable());
 			abilityRegistry.register(a.loc, a);
@@ -59,8 +59,8 @@ public final class Registries extends TwoArgFunction {
 		t.set("Moves", moveRegistry.luaV);
 		t.set("Items", itemRegistry.luaV);
 		if(EnumSide.getSide()==EnumSide.CLIENT)
-			;
-		return null;
+			t.set("Client",Client.getClient());
+		return t;
 	}
 
 }
