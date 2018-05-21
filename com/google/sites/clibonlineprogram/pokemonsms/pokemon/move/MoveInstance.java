@@ -11,11 +11,15 @@ public class MoveInstance implements ISaveable {
 		this.m = m;
 		
 	}
+	public MoveInstance(){
+		
+	}
 
 	@Override
 	public void save(NBTTagCompound comp) {
-		// TODO Auto-generated method stub
-
+		comp.setString("loc",m.getResourceLocation().toString());
+		comp.setInteger("RemainingPP",remaiingPP);
+		comp.setInteger("NumPPUps",numPPUps);
 	}
 
 	@Override
