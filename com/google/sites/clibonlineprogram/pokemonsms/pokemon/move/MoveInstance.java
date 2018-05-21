@@ -17,7 +17,7 @@ public class MoveInstance implements ISaveable {
 
 	@Override
 	public void save(NBTTagCompound comp) {
-		comp.setString("loc",m.getResourceLocation().toString());
+		comp.setString("loc",m.getLoc().toString());
 		comp.setInteger("RemainingPP",remaiingPP);
 		comp.setInteger("NumPPUps",numPPUps);
 	}
