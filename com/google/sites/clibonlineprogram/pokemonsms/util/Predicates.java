@@ -87,5 +87,14 @@ public static <T> Predicate<T> not(final Predicate<? super T> a){
 	};
 }
 
+public static <T> Predicate<T> notNull(){
+    return t->t!=null;   
+}
+    
+public static <T> Predicate<T> isNull(){
+    return t->t==null;   
+}
+
+
 
 }
