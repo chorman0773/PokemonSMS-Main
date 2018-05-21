@@ -40,7 +40,7 @@ public class UUIDGenerator {
 	public static final UUID generate(Instant stamp) {
 		Duration d = Duration.between(UUID_EPOCH, stamp);
 		long ts = d.getSeconds()*10000000 + d.getNano()/100;
-		long clockSeq = (Long.hashCode(d.getNano()%100)&0x3FFF)<<48L;
+		long clockSeq = (d.hashCode()&0x3FFF)<<48L;
 		long low = (ts&0xFFFFFFFFL)<<32;
 		long mid = ((ts>>32)&0xFFFF)<<16;
 		long hi = ((ts>>48)&0x7FFF)<<48;
