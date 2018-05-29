@@ -40,4 +40,128 @@ In this specification AES refers to AES-256 using PKCS5 Padding and Cipher Block
  <li>The client must then send the MAGIC number to the server and the server must send the MAGIC number to the client. Both of these numbers should decrypt to 0x0F0E1C3E. If not the client or the server may choose to close the connection or repeat from step 1 by sending an FF byte (over nonsecure). (Otherwise they both send a 00 byte).</li>
 </ol>
 
+<h1>Abstract Protocol Layout</h1>
+<h2>Types</h2>
+These Types are the different value types that are sent in PkmCom.<br/>
+PkmCom is a big-endian format. That is, all multibyte numbers are formated in big-endian.
+For more information about big-endian vs little-endian, read the Wikipedia article on Endianness <https://en.wikipedia.org/wiki/Endianness><br/><br/>
+In addition, all signed types use 2s compliment signing<br/><br/>
+<h3>Type List</h3>
+<table>
+   <tr>
+     <th>Name</th>
+     <th>Size(bytes)</th>
+     <th>Description</th>
+  </tr>
+  <tr>
+    <td>Byte</td>
+    <td>1</td>
+    <td>An Unsigned Byte from 0 - 255</td>
+  </tr>
+  <tr>
+    <td>Signed Byte</td>
+    <td>1</td>
+    <td>A Signed Byte from -128 - 127</td>
+  </tr>
+  <tr>
+    <td>Short</td>
+    <td>2</td>
+    <td>A Signed Short from -32768 - 32767</td>
+  </tr>
+  <tr>
+    <td>Int</td>
+    <td>4</td>
+    <td>A Signed Int from -2147483648 - 2147483647</td>
+  </tr>
+  <tr>
+    <td>Unsigned Int</td>
+    <td>4</td>
+    <td>An unsigned Int from 0 - 4294967295</td>
+  </tr>
+  <tr>
+    <td>Long</td>
+    <td>8</td>
+    <td>A signed Long from -9223372036854775808 - 9223372036854775807</td>
+  </tr>
+  <tr>
+    <td>UUID</td>
+    <td>16</td>
+    <td>A UUID encoded as 2 separate longs.</td>
+  </tr>
+  <tr>
+    <td>String</td>
+    <td>2+n</td>
+    <td>A 2-byte unsigned short length prefix n, followed by n bytes. The string is in the Modified UTF-8 Format stored in the java class file format</td>
+  </tr>
+  <tr>
+    <td>Array of T</td>
+    <td>n*Size of T</td>
+    <td>Some number of Elements, which are each T. The length n, of the array is known from the context</td>
+  </tr>
+  <tr>
+    <td>JSON</td>
+    <td>2+n</td>
+    <td>Same as the equivalent string but the data must form a valid json object</td>
+  </tr>
+  <tr>
+    <td>T Bitflag</td>
+    <td>Sizeof T</td>
+    <td>Indicates that the field is used as a bitflag array. The only types that are valid for T are Byte, Unsigned Int, Long, or UUID. The Standard Implementation will only send Byte Bitflags and Unsigned Int Bitflags. Any Bits that are set in the bitflag array, that are not given for a specific instance should be ignored.</td>
+  </tr>
+  <tr>
+    <td>T Enum</td>
+    <td>Sizeof T</td>
+    <td>Indicates that the field is an enum, and may only contain certain values, which are given by the context. It is an error if the value is set to anything other than the values that are allowed</td>
+  </tr>
+  <tr>
+    <td>Version</td>
+    <td>2</td>
+    <td>A short which describes a version. The high byte is the major version-1, and the low byte is the minor version.</td>
+  </tr>
+  <tr>
+    <td>Boolean</td>
+    <td>1</td>
+    <td>A Byte which represents a boolean value (true or false). If 0 it is false, nonzero is true, though the vanilla client and server will only send 1 as the Value for true.</td>
+  </tr>
+  <tr>
+    <td>Float</td>
+    <td>4</td>
+    <td>A 4-byte java float. See [Floating-Point numbers in JLS](https://docs.oracle.com/javase/specs/jls/se10/html/jls-4.html#jls-4.2.3), and [Single-precision IEEE754 format](https://en.wikipedia.org/wiki/IEEE_754)</td>
+  </tr>
+  <tr>
+    <td>Double</td>
+    <td>8</td>
+    <td>A 8-byte java double. See the above resources, for double-precision floating-point numbers</td>
+  </tr>
+  <tr>
+    <td>Long String</td>
+    <td>4+n</td>
+    <td>Same as a String, except the length prefix is a signed int (where only positive values are allowed)</td>
+  </tr>
+  <tr>
+    <td>Long JSON</td>
+    <td>4+n</td>
+    <td>Same as a JSON, except the length prefix is a signed int (where only positive values are allowed)</td>
+  </tr>
+  <tr>
+    <td>Instant</td>
+    <td>12</td>
+    <td>A java Instant, encoded as long seconds since the epoch, and int nanoseconds since the start of that second. See [Java API Documentation for java.time.Instant](https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html)</td>
+  </tr>
+  <tr>
+    <td>Duration</td>
+    <td>12</td>
+    <td>A java Duration, encoded as long seconds and int nanoseconds. See [Java API Documention for java.time.Duration](https://docs.oracle.com/javase/10/docs/api/java/time/Duration.html)</td>
+  </tr>
+  <tr>
+    <td>Void</td>
+    <td>0</td>
+    <td>A special type which appears on its on in a packet's description, representing a packet without fields</td>
+  </tr>
+  <tr>
+    <td>PokemonData</td>
+    <td>13 or 14+Sizeof String+Sizeof JSON</td>
+    <td>A Structure type which represents a Pokemon. (See below)</td>
+  </tr>
+</table>
 
