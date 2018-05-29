@@ -126,7 +126,7 @@ In addition, all signed types use 2s compliment signing<br/><br/>
   <tr>
     <td>Float</td>
     <td>4</td>
-    <td>A 4-byte java float. See Floating-Point numbers in the Java Language Specification <https://docs.oracle.com/javase/specs/jls/se10/html/jls-4.html#jls-4.2.3>, and the Single-precision IEEE754 format <https://en.wikipedia.org/wiki/IEEE_754></td>
+   <td>A 4-byte java float. See Floating-Point numbers in the Java Language Specification https://docs.oracle.com/javase/specs/jls/se10/html/jls-4.html#jls-4.2.3, and the Single-precision IEEE754 format https://en.wikipedia.org/wiki/IEEE_754</td>
   </tr>
   <tr>
     <td>Double</td>
@@ -146,12 +146,12 @@ In addition, all signed types use 2s compliment signing<br/><br/>
   <tr>
     <td>Instant</td>
     <td>12</td>
-    <td>A java Instant, encoded as long seconds since the epoch, and int nanoseconds since the start of that second. See Java API Documentation for java.time.Instant <https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html></td>
+    <td>A java Instant, encoded as long seconds since the epoch, and int nanoseconds since the start of that second. See Java API Documentation for java.time.Instant https://docs.oracle.com/javase/10/docs/api/java/time/Instant.html</td>
   </tr>
   <tr>
     <td>Duration</td>
     <td>12</td>
-    <td>A java Duration, encoded as long seconds and int nanoseconds. See Java API Documention for java.time.Duration <https://docs.oracle.com/javase/10/docs/api/java/time/Duration.html></td>
+    <td>A java Duration, encoded as long seconds and int nanoseconds. See Java API Documention for java.time.Duration https://docs.oracle.com/javase/10/docs/api/java/time/Duration.html</td>
   </tr>
   <tr>
     <td>Void</td>
