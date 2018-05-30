@@ -165,3 +165,19 @@ In addition, all signed types use 2s compliment signing<br/><br/>
   </tr>
 </table>
 
+<h2>PokemonData Struct</h2>
+The PokemonData struct is used to represent minimal information about a pokemon, which is more space efficient then sending it via json. The structure contains everything that the client needs to render the pokemon.
+
+
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>PokemonId</td>
+    <td>Byte</td>
+    <td>The Id, (Index in the Pokemon Array), of the pokemon in battles. Outside of battles its always 0</td>
+  </tr>
+</table>
