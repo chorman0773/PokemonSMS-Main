@@ -181,3 +181,15 @@ The PokemonData struct is used to represent minimal information about a pokemon,
     <td>The Id, (Index in the Pokemon Array), of the pokemon in battles. Outside of battles its always 0</td>
   </tr>
 </table>
+
+<h2>Hashcode of types</h4>
+```
+Byte, Unsigned Short: The hashcode of a byte or unsigned short is the value, zero-extended to an int.
+Signed Byte, Short: The hashcode of a signed byte or a short is the value sign-extended to an int.
+Int: The hashcode of an int is the int itself.
+Unsigned Int: The hashcode of an unsigned int is the value treated as a signed int.
+Long: The hashcode of a long is the 4 most significant bytes xor-d with the 4 least significant bytes.
+UUID: The hashcode of a UUID is the hashcode of the most significant long *31 + the hashcode of the least significant long.
+
+```
+
