@@ -183,7 +183,9 @@ The PokemonData struct is used to represent minimal information about a pokemon,
 </table>
 
 <h2>Hashcode of types</h4>
+
 ```
+
 Byte, Unsigned Short: The hashcode of a byte or unsigned short is the value, zero-extended to an int.
 Signed Byte, Short: The hashcode of a signed byte or a short is the value sign-extended to an int.
 Int: The hashcode of an int is the int itself.
